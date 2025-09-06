@@ -5,7 +5,7 @@
 int main (void)
 {
     long seconds, minutes, hours, days, weeks, months, years;
-    char next;
+    char next, min_or_sec;
     printf("Number of hours: \n");
     scanf("%ld", &hours);
 
@@ -36,17 +36,34 @@ int main (void)
     if (hours > 0)
     {
         printf("Hours: %ld\n", hours);
+        do
+        {
+            printf("Continue? (y/n): ");
+            scanf(" %c", &next);
+        }
+        while (next != 'y' && next != 'Y' && next != 'n' && next != 'N');
     }
-    do
-    {
-    printf("Continue? (y/n): ");
-    scanf(" %c", &next);
-    }
-    while (next != 'y' && next != 'Y' && next != 'n' && next != 'N');
 
     if (next == 'y' || next == 'Y')
     {
-        printf("Work in progress\n");
+        do
+        {
+            printf("Seconds or Minutes? (m/s): ");
+            scanf(" %c", &min_or_sec);
+        }
+        while (min_or_sec == 'm' && min_or_sec == 's');
+        if (min_or_sec == 'm')
+        {
+            minutes = hours*60;
+            printf("Minutes: %ld\n", minutes);
+            hours = hours - (minutes/60);
+        }
+        else if (min_or_sec == 's')
+        {
+            seconds = hours*3600;
+            printf("Seconds: %ld\n", seconds);
+            hours = hours - (seconds/3600);
+        }
     }
 
     return 0;
