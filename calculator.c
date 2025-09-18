@@ -8,6 +8,14 @@ long sum (int addends[], int count) {
 	return c;
 }
 
+long subtraction (int subtracts[], int count) {
+	long c = subtracts[0];
+	for (int i = 1; i <= count; i++) {
+		c = c - subtracts[i];
+	}
+	return c;
+}
+
 int main (void) {
 	// main loop
 	for (;;) {
@@ -34,7 +42,22 @@ int main (void) {
 				}
 			}
 			long result = sum(addends, count);
-			printf("The result is: %ld\n", result);
+			printf("The result is: %ld\n\n", result);
+		} else if (operation == 's') {
+			int subtracts[20];
+			int count;
+			printf("Minuend: ");
+			scanf(" %d", &subtracts[0]);
+			printf("Subtrahends: ");
+			for (int i = 1; i <= 20; i++) {
+				scanf(" %d", &subtracts[i]);
+				if (subtracts[i] == 0) {
+					count = i;
+					break;
+				}
+			}
+			long result = subtraction(subtracts, count);
+			printf("The result is: %ld\n\n", result);
 		}
 	}
 }
